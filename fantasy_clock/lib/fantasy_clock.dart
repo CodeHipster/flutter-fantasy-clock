@@ -24,8 +24,10 @@ class FantasyClockState extends State<FantasyClock>{
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Image.asset("background.png")
+    return Stack(
+      children: [
+        Image.asset("assets/images/background.jpg"),
+        Image.asset("assets/images/cell_animation.webp")]
     );
   }
 
