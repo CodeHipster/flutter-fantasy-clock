@@ -19,7 +19,7 @@ class TimeState extends State<Time> {
             children: [
               Digit(),
               Digit(),
-              Flexible(child: Image.asset("assets/images/colon.png")),
+              Flexible(child: Image.asset("assets/images/colon.png",fit:BoxFit.contain, height: double.infinity)),
               Digit(),
               Digit()
             ],
