@@ -11,23 +11,25 @@ class TimeState extends State<Time> {
     //height proportion
 
     return Column(children: [
-      Expanded(flex: 2, child: Container(color: Colors.red,)),
-      Expanded(
+      // 20% space above
+      Flexible(flex: 2, child: Container()),
+      // 60% space for the digits
+      Flexible(
         flex: 6,
-        child: Center(
-          child: Row(
-            children: [
-              Digit(),
-              Digit(),
-              Flexible(child: Image.asset("assets/images/colon.png",fit:BoxFit.contain, height: double.infinity)),
-              Digit(),
-              Digit()
-            ],
-            mainAxisSize: MainAxisSize.min,
-          ),
+        child: Row( // 11 flex width
+          children: [
+            Flexible(child: Container(),), // 1 flex left
+            Flexible(flex: 2, child: Digit()),
+            Flexible(flex: 2, child: Digit()),
+            Flexible(child: Image.asset("assets/images/colon.png",fit:BoxFit.contain, height: double.infinity)),
+            Flexible(flex: 2, child: Digit()),
+            Flexible(flex: 2, child: Digit()),
+            Flexible(child: Container()), // 1 flex right
+          ],
         ),
       ),
-      Expanded(flex: 2, child: Container(color: Colors.red,)),
+      // 20% space on the bottom
+      Flexible(flex: 2, child: Container()),
     ]);
   }
 }
@@ -40,7 +42,7 @@ class Digit extends StatefulWidget {
 class DigitState extends State<Digit> {
   @override
   Widget build(BuildContext context) {
-    return Flexible(child: Image.asset("assets/images/1.png",fit:BoxFit.contain, height: double.infinity,));
+    return Image.asset("assets/images/1.png",fit:BoxFit.contain, height: double.infinity,);
   }
 }
 
