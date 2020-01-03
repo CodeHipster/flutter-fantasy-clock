@@ -8,11 +8,12 @@
 
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_clock_helper/model.dart';
 
-import 'components/background.dart';
-import 'components/time.dart';
+import 'components/background/background.dart';
+import 'components/time/time.dart';
 
 class FantasyClock extends StatefulWidget {
   final ClockModel model;
@@ -30,7 +31,8 @@ class FantasyClockState extends State<FantasyClock>{
     return Stack(
         children: [
           Background(),
-          Time()]
+          Time()
+        ]
     );
   }
 

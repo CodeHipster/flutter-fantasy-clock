@@ -20,7 +20,15 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/background.jpg
-    - assets/images/test.webp
-    - assets/images/1.png
-    - assets/images/2.png
     - assets/images/colon.png
+    - assets/images/digit1/1-1.png
+    - assets/images/digit1/1-2.png
+    - assets/images/digit2/2-1.png
+    - assets/images/digit2/2-2.png
+    - assets/images/digit2/2-3.png
+    - assets/images/digit3/3-1.png
+    - assets/images/digit3/3-2.png
+    - assets/images/digit3/3-3.png
+    - assets/images/digit4/4-1.png
+    - assets/images/digit4/4-2.png
+    - assets/images/digit4/4-3.png
