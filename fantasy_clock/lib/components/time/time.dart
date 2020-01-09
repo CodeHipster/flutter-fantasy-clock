@@ -1,27 +1,32 @@
-import 'dart:async';
-
 import 'package:fantasy_clock/components/time/time-stream.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
 import 'digit.dart';
 
-
 /// The Time widget is the part of the clock that shows and manages the time display.
 /// It is build up out of 4 digit widgets and a colon widget.
 /// Each digit is a full screen image with transparency.
 /// This is because the digit has a position on the background and thus can't be flexibly placed.
-class Time extends StatelessWidget {
+class Time extends StatefulWidget {
 
-  List<Digit> digits = new List(4);
+  @override
+  State<StatefulWidget> createState() => _TimeState();
 
-  Time(){
-    var timeStream = new TimeStream();
+}
 
-    digits[0] = Digit(1, timeStream);
-    digits[1] = Digit(2, timeStream);
-    digits[2] = Digit(3, timeStream);
-    digits[3] = Digit(4, timeStream);
+class _TimeState extends State<Time>{
+
+  final MinuteNotifier _timeStream = MinuteNotifier();
+  final List<Digit> digits = new List(4);
+
+  @override
+  void initState(){
+    super.initState();
+    digits[0] = Digit(1, _timeStream);
+    digits[1] = Digit(2, _timeStream);
+    digits[2] = Digit(3, _timeStream);
+    digits[3] = Digit(4, _timeStream);
   }
 
   @override
@@ -35,4 +40,11 @@ class Time extends StatelessWidget {
     ]);
     return stack;
   }
+
+  @override
+  void dispose(){
+    super.dispose();
+    _timeStream.dispose();
+  }
+
 }

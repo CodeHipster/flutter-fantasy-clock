@@ -2,26 +2,51 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 
-class TimeStream  extends ValueNotifier<DateTime> {
+class MinuteNotifier extends ValueNotifier<DateTime> {
 
-  TimeStream() :
-    super(DateTime.now()){
-    _updateTime();
-  }
+  Timer _timer;
 
+  MinuteNotifier() :
+    super(DateTime.now());
+
+  // Recursive(ish)
   void _updateTime(){
-    print("updating time");
-    value = DateTime.now();
-    Timer(
-      Duration(seconds: 1),
+    value = DateTime.now(); //Notifies listeners through super.
+    //TODO: check for memory leak.
+    _timer = Timer(
+      Duration(minutes: 1) -
+          Duration(seconds: value.second) -
+          Duration(milliseconds: value.millisecond),
       _updateTime,
     );
-//    Timer(
-//      Duration(minutes: 1) -
-//          Duration(seconds: value.second) -
-//          Duration(milliseconds: value.millisecond),
-//      _updateTime,
-//    );
-    notifyListeners();
+  }
+
+  @override
+  void dispose(){
+    super.dispose();
+    _timer.cancel();
+  }
+
+  //TODO: is this thread safe?
+  @override
+  void addListener(listener) {
+    if(!this.hasListeners){
+      assert(_timer == null, "It should not be possible that there is already a timer.");
+      if(_timer != null){
+        _timer.cancel();
+      }
+      _updateTime();
+    }
+    super.addListener(listener);
+  }
+
+  //TODO: is this thread safe?
+  @override
+  void removeListener(VoidCallback listener){
+    super.removeListener(listener);
+    if(!this.hasListeners){
+      _timer.cancel();
+      _timer = null;
+    }
   }
 }

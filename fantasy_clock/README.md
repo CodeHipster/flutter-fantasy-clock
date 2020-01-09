@@ -4,9 +4,7 @@ Try not to get lost when you are looking for the time.
 
 ### TODO
 
-- time and animations
-    - static number images
-    - transition animation
-    - animation stack?
-- background animations
-- changes based on light sensor
+- Listener to clockSettings in Time widget
+    - for changes to the time notation.
+    
+- listener to clockSettings in background, to react to light sensor

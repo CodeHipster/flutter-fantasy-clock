@@ -1,43 +1,38 @@
-import 'dart:math';
-
 import 'package:flutter/widgets.dart';
 
 import 'time-stream.dart';
 
 class Digit extends StatefulWidget {
   final int _position;
-  TimeStream _timeStream;
-  _DigitState _state;
+  final MinuteNotifier _minuteNotifier;
 
-  //TODO: dependency injection
-  Digit(this._position, this._timeStream) {
+  Digit(this._position, this._minuteNotifier) {
     assert(_position > 0 && _position < 5);
   }
 
   @override
-  State<StatefulWidget> createState() {
-    _state = _DigitState();
-    return _state;
-  }
+  State<StatefulWidget> createState() => _DigitState();
 }
 
 class _DigitState extends State<Digit> {
   int digit;
-  Random rand = Random();
+  VoidCallback onMinuteChange;
 
   @override
   void initState(){
     super.initState();
-    digit = 0;
-    widget._timeStream.addListener(() {
-      var value = convert(widget._position, widget._timeStream.value);
-      this.updateState(value);
-    });
+    digit = convert(widget._minuteNotifier.value);
+    onMinuteChange = () {
+      var value = convert(widget._minuteNotifier.value);
+      this.setState(() => this.digit = value);
+    };
+    widget._minuteNotifier.addListener(onMinuteChange);
   }
 
-  void updateState(int digit) {
-    this.setState(() => this.digit = digit);
-    // create a stack of images to show?
+  @override
+  void dispose(){
+    widget._minuteNotifier.removeListener(onMinuteChange);
+    super.dispose();
   }
 
   @override
@@ -49,8 +44,8 @@ class _DigitState extends State<Digit> {
             fit: BoxFit.cover));
   }
 
-  int convert(int position, DateTime dt){
-    switch(position){
+  int convert(DateTime dt){
+    switch(this.widget._position){
       case 1:
         return dt.hour ~/ 10;
       case 2:
@@ -59,7 +54,8 @@ class _DigitState extends State<Digit> {
         return dt.minute ~/ 10;
       case 4:
         return dt.minute % 10;
+      default:
+        throw Exception("There can only be 4 digits in our clock.");
     }
   }
-
 }

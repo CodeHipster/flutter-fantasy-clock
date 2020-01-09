@@ -1,14 +1,3 @@
-//stateless container widget
-// contains stateless background widget
-// contains stateful time widget
-
-//webp animation
-//background image
-//background animation
-
-import 'dart:async';
-
-import 'package:fantasy_clock/components/time/time-stream.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_clock_helper/model.dart';
@@ -17,9 +6,9 @@ import 'background/background.dart';
 import 'time/time.dart';
 
 class FantasyClock extends StatefulWidget {
-  final ClockModel model;
+  final ClockModel _clockSettings;
 
-  const FantasyClock(this.model);
+  const FantasyClock(this._clockSettings);
 
   @override
   State<StatefulWidget> createState() => FantasyClockState();
