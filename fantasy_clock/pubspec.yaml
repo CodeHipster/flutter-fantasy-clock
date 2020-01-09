@@ -3,7 +3,7 @@ description: Fantasy clock
 version: 0.0.0
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -19,16 +19,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/background.jpg
-    - assets/images/colon.png
-    - assets/images/digit1/1-1.png
-    - assets/images/digit1/1-2.png
-    - assets/images/digit2/2-1.png
-    - assets/images/digit2/2-2.png
-    - assets/images/digit2/2-3.png
-    - assets/images/digit3/3-1.png
-    - assets/images/digit3/3-2.png
-    - assets/images/digit3/3-3.png
-    - assets/images/digit4/4-1.png
-    - assets/images/digit4/4-2.png
-    - assets/images/digit4/4-3.png
+    - assets/images/
+    - assets/images/digit1/
+    - assets/images/digit2/
+    - assets/images/digit3/
+    - assets/images/digit4/

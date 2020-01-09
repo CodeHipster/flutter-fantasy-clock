@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:fantasy_clock/components/time/time-stream.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
 import 'digit.dart';
@@ -9,57 +11,28 @@ import 'digit.dart';
 /// It is build up out of 4 digit widgets and a colon widget.
 /// Each digit is a full screen image with transparency.
 /// This is because the digit has a position on the background and thus can't be flexibly placed.
+class Time extends StatelessWidget {
 
-class Time extends StatefulWidget {
+  List<Digit> digits = new List(4);
 
-  @override
-  State<Time> createState() => TimeState();
+  Time(){
+    var timeStream = new TimeStream();
 
-}
-
-class TimeState extends State<Time> {
-  DateTime _time = DateTime.now();
-  Timer _timer;
-
-  @override
-  void initState(){
-    super.initState();
+    digits[0] = Digit(1, timeStream);
+    digits[1] = Digit(2, timeStream);
+    digits[2] = Digit(3, timeStream);
+    digits[3] = Digit(4, timeStream);
   }
 
   @override
   Widget build(BuildContext context) {
-    //height proportion
-    return Stack(children: [
-      Digit(1),
-      Digit(2),
+    var stack = Stack(children: [
+      digits[0],
+      digits[1],
       Image.asset("assets/images/colon.png"),
-      Digit(3),
-      Digit(4),
+      digits[2],
+      digits[3],
     ]);
-  }
-
-  void _updateTime(){
-    DateTime tempTime = DateTime.now();
-    _timer = Timer(
-      Duration(minutes: 1) -
-          Duration(seconds: _time.second) -
-          Duration(milliseconds: _time.millisecond),
-      _updateTime,
-    );
-    setState(() {
-      _time = tempTime;
-    });
-  }
-
-  @override
-  void didUpdateWidget(Time oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    // rewire listeners
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
+    return stack;
   }
 }
