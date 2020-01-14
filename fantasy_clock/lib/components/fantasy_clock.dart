@@ -21,7 +21,7 @@ class FantasyClockState extends State<FantasyClock>{
     return Stack(
         children: [
           Background(),
-          Time()
+          Time(widget._clockSettings)
         ]
     );
   }

@@ -1,12 +1,16 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_clock_helper/model.dart';
 
 import 'time-stream.dart';
+
+import 'package:intl/intl.dart';
 
 class Digit extends StatefulWidget {
   final int _position;
   final MinuteNotifier _minuteNotifier;
+  final ClockModel _settings;
 
-  Digit(this._position, this._minuteNotifier) {
+  Digit(this._position, this._minuteNotifier, this._settings) {
     assert(_position > 0 && _position < 5);
   }
 
@@ -17,20 +21,32 @@ class Digit extends StatefulWidget {
 class _DigitState extends State<Digit> {
   int digit;
   VoidCallback onMinuteChange;
+  VoidCallback onSettingChanged;
+  DateFormat hourFormat;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    digit = convert(widget._minuteNotifier.value);
+    hourFormat = _getHourFormat();
+    digit = _convert(widget._minuteNotifier.value);
     onMinuteChange = () {
-      var value = convert(widget._minuteNotifier.value);
+      var value = _convert(widget._minuteNotifier.value);
       this.setState(() => this.digit = value);
     };
+    onSettingChanged = () {
+      var hourFormat = this._getHourFormat();
+      var value = _convert(widget._minuteNotifier.value);
+      this.setState(() {
+        this.hourFormat = hourFormat;
+        this.digit = value;
+      });
+    };
     widget._minuteNotifier.addListener(onMinuteChange);
+    widget._settings.addListener(onSettingChanged);
   }
 
   @override
-  void dispose(){
+  void dispose() {
     widget._minuteNotifier.removeListener(onMinuteChange);
     super.dispose();
   }
@@ -44,12 +60,18 @@ class _DigitState extends State<Digit> {
             fit: BoxFit.cover));
   }
 
-  int convert(DateTime dt){
-    switch(this.widget._position){
+  DateFormat _getHourFormat() {
+    print("getting hour format");
+    return DateFormat(widget._settings.is24HourFormat ? 'HH' : 'hh');
+  }
+
+  int _convert(DateTime dt) {
+    final hour = int.parse(hourFormat.format(dt));
+    switch (this.widget._position) {
       case 1:
-        return dt.hour ~/ 10;
+        return hour ~/ 10;
       case 2:
-        return dt.hour % 10;
+        return hour % 10;
       case 3:
         return dt.minute ~/ 10;
       case 4:

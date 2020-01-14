@@ -1,6 +1,7 @@
 import 'package:fantasy_clock/components/time/time-stream.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_clock_helper/model.dart';
 
 import 'digit.dart';
 
@@ -9,6 +10,10 @@ import 'digit.dart';
 /// Each digit is a full screen image with transparency.
 /// This is because the digit has a position on the background and thus can't be flexibly placed.
 class Time extends StatefulWidget {
+
+  final ClockModel _clockSettings;
+
+  Time(this._clockSettings);
 
   @override
   State<StatefulWidget> createState() => _TimeState();
@@ -23,10 +28,10 @@ class _TimeState extends State<Time>{
   @override
   void initState(){
     super.initState();
-    digits[0] = Digit(1, _timeStream);
-    digits[1] = Digit(2, _timeStream);
-    digits[2] = Digit(3, _timeStream);
-    digits[3] = Digit(4, _timeStream);
+    digits[0] = Digit(1, _timeStream, widget._clockSettings);
+    digits[1] = Digit(2, _timeStream, widget._clockSettings);
+    digits[2] = Digit(3, _timeStream, widget._clockSettings);
+    digits[3] = Digit(4, _timeStream, widget._clockSettings);
   }
 
   @override
