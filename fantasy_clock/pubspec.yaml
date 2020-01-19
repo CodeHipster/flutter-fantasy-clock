@@ -19,8 +19,17 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/
-    - assets/images/digit1/
-    - assets/images/digit2/
-    - assets/images/digit3/
-    - assets/images/digit4/
+    - assets/images/dark/
+    - assets/images/light/
+    - assets/images/dark/background/
+    - assets/images/dark/foreground/
+    - assets/images/light/background/
+    - assets/images/light/foreground/
+    - assets/images/dark/digit1/
+    - assets/images/dark/digit2/
+    - assets/images/dark/digit3/
+    - assets/images/dark/digit4/
+    - assets/images/light/digit1/
+    - assets/images/light/digit2/
+    - assets/images/light/digit3/
+    - assets/images/light/digit4/

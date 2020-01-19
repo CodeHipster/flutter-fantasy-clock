@@ -39,7 +39,7 @@ class _TimeState extends State<Time>{
     var stack = Stack(children: [
       digits[0],
       digits[1],
-      Image.asset("assets/images/colon.png"),
+      Image.asset("assets/images/dark/colon.png"),
       digits[2],
       digits[3],
     ]);

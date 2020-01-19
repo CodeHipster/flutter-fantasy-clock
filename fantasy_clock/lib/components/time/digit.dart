@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_clock_helper/model.dart';
 
@@ -28,14 +31,14 @@ class _DigitState extends State<Digit> {
   void initState() {
     super.initState();
     hourFormat = _getHourFormat();
-    digit = _convert(widget._minuteNotifier.value);
+    digit = _convert(widget._minuteNotifier.value, this.hourFormat);
     onMinuteChange = () {
-      var value = _convert(widget._minuteNotifier.value);
+      var value = _convert(widget._minuteNotifier.value, this.hourFormat);
       this.setState(() => this.digit = value);
     };
     onSettingChanged = () {
       var hourFormat = this._getHourFormat();
-      var value = _convert(widget._minuteNotifier.value);
+      var value = _convert(widget._minuteNotifier.value, hourFormat);
       this.setState(() {
         this.hourFormat = hourFormat;
         this.digit = value;
@@ -53,9 +56,14 @@ class _DigitState extends State<Digit> {
 
   @override
   Widget build(BuildContext context) {
+
+    final String theme = Theme.of(context).brightness == Brightness.light
+        ?"light":"dark";
+
+    print("rebuilding digit: $theme");
     return SizedBox.expand(
         child: Image.asset(
-            "assets/images/digit${this.widget._position}/${this.widget._position}-${this.digit}.png",
+            "assets/images/$theme/digit${this.widget._position}/${this.widget._position}-${this.digit}.png",
             gaplessPlayback: true,
             fit: BoxFit.cover));
   }
@@ -65,8 +73,9 @@ class _DigitState extends State<Digit> {
     return DateFormat(widget._settings.is24HourFormat ? 'HH' : 'hh');
   }
 
-  int _convert(DateTime dt) {
+  int _convert(DateTime dt, DateFormat hourFormat) {
     final hour = int.parse(hourFormat.format(dt));
+    print("hour: $hour");
     switch (this.widget._position) {
       case 1:
         return hour ~/ 10;

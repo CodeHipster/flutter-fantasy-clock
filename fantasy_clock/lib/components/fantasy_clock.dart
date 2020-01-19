@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_clock_helper/model.dart';
 
 import 'background/background.dart';
+import 'foreground/foreground.dart';
 import 'time/time.dart';
 
 class FantasyClock extends StatefulWidget {
@@ -21,7 +22,8 @@ class FantasyClockState extends State<FantasyClock>{
     return Stack(
         children: [
           Background(),
-          Time(widget._clockSettings)
+          Time(widget._clockSettings),
+          Foreground()
         ]
     );
   }
