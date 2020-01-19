@@ -10,23 +10,20 @@ import 'digit.dart';
 /// Each digit is a full screen image with transparency.
 /// This is because the digit has a position on the background and thus can't be flexibly placed.
 class Time extends StatefulWidget {
-
   final ClockModel _clockSettings;
 
   Time(this._clockSettings);
 
   @override
   State<StatefulWidget> createState() => _TimeState();
-
 }
 
-class _TimeState extends State<Time>{
-
+class _TimeState extends State<Time> {
   final MinuteNotifier _timeStream = MinuteNotifier();
   final List<Digit> digits = new List(4);
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     digits[0] = Digit(1, _timeStream, widget._clockSettings);
     digits[1] = Digit(2, _timeStream, widget._clockSettings);
@@ -47,9 +44,8 @@ class _TimeState extends State<Time>{
   }
 
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
     _timeStream.dispose();
   }
-
 }

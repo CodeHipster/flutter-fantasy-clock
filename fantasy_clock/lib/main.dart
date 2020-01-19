@@ -20,5 +20,6 @@ void main() {
     debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
   }
 
-  runApp(ClockCustomizer((ClockModel clockSettings) => FantasyClock(clockSettings)));
+  runApp(ClockCustomizer(
+      (ClockModel clockSettings) => FantasyClock(clockSettings)));
 }

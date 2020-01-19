@@ -15,17 +15,10 @@ class FantasyClock extends StatefulWidget {
   State<StatefulWidget> createState() => FantasyClockState();
 }
 
-class FantasyClockState extends State<FantasyClock>{
-
+class FantasyClockState extends State<FantasyClock> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-        children: [
-          Background(),
-          Time(widget._clockSettings),
-          Foreground()
-        ]
-    );
+        children: [Background(), Time(widget._clockSettings), Foreground()]);
   }
-
 }

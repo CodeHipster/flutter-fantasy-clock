@@ -56,9 +56,8 @@ class _DigitState extends State<Digit> {
 
   @override
   Widget build(BuildContext context) {
-
-    final String theme = Theme.of(context).brightness == Brightness.light
-        ?"light":"dark";
+    final String theme =
+        Theme.of(context).brightness == Brightness.light ? "light" : "dark";
 
     print("rebuilding digit: $theme");
     return SizedBox.expand(
