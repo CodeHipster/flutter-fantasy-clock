@@ -53,7 +53,8 @@ class _TimeState extends State<Time> {
     var stack = Stack(children: [
       digits[0],
       digits[1],
-      Image.asset("assets/images/$theme/colon.png"),
+      SizedBox.expand(child: Image.asset("assets/images/$theme/colon.png",gaplessPlayback: true,
+          fit: BoxFit.cover)),
       digits[2],
       digits[3],
     ]);
