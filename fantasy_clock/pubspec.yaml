@@ -22,9 +22,7 @@ flutter:
     - assets/images/dark/
     - assets/images/light/
     - assets/images/dark/background/
-    - assets/images/dark/foreground/
     - assets/images/light/background/
-    - assets/images/light/foreground/
     - assets/images/dark/digit1/
     - assets/images/dark/digit2/
     - assets/images/dark/digit3/

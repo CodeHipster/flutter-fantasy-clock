@@ -1,3 +1,17 @@
+// Copyright 2020 Thijs Oostdam
+//
+//Licensed under the Apache License, Version 2.0 (the "License");
+//you may not use this file except in compliance with the License.
+//You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+//Unless required by applicable law or agreed to in writing, software
+//distributed under the License is distributed on an "AS IS" BASIS,
+//WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//See the License for the specific language governing permissions and
+//limitations under the License.
+
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -34,7 +48,9 @@ class _DigitState extends State<Digit> {
     digit = _convert(widget._minuteNotifier.value, this.hourFormat);
     onMinuteChange = () {
       var value = _convert(widget._minuteNotifier.value, this.hourFormat);
-      this.setState(() => this.digit = value);
+      if(this.digit != value){
+        this.setState(() => this.digit = value);
+      }
     };
     onSettingChanged = () {
       var hourFormat = this._getHourFormat();
@@ -59,7 +75,6 @@ class _DigitState extends State<Digit> {
     final String theme =
         Theme.of(context).brightness == Brightness.light ? "light" : "dark";
 
-    print("rebuilding digit: $theme");
     return SizedBox.expand(
         child: Image.asset(
             "assets/images/$theme/digit${this.widget._position}/${this.widget._position}-${this.digit}.png",
@@ -68,13 +83,11 @@ class _DigitState extends State<Digit> {
   }
 
   DateFormat _getHourFormat() {
-    print("getting hour format");
     return DateFormat(widget._settings.is24HourFormat ? 'HH' : 'hh');
   }
 
   int _convert(DateTime dt, DateFormat hourFormat) {
     final hour = int.parse(hourFormat.format(dt));
-    print("hour: $hour");
     switch (this.widget._position) {
       case 1:
         return hour ~/ 10;
