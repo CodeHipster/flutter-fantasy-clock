@@ -12,7 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-import 'package:fantasy_clock/components/time/time-stream.dart';
+import 'package:fantasy_clock/components/time/minute-notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

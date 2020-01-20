@@ -18,7 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_clock_helper/model.dart';
 
-import 'time-stream.dart';
+import 'minute-notifier.dart';
 
 import 'package:intl/intl.dart';
 

@@ -24,7 +24,6 @@ class MinuteNotifier extends ValueNotifier<DateTime> {
   // Recursive(ish)
   void _updateTime() {
     value = DateTime.now(); //Notifies listeners through super.
-    //TODO: check for memory leak.
     _timer = Timer(
       Duration(minutes: 1) -
           Duration(seconds: value.second) -
