@@ -14,6 +14,7 @@
 
 import 'dart:ui';
 
+import 'package:fantasy_clock/components/clock-fit-image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_clock_helper/model.dart';
@@ -75,11 +76,7 @@ class _DigitState extends State<Digit> {
     final String theme =
         Theme.of(context).brightness == Brightness.light ? "light" : "dark";
 
-    return SizedBox.expand(
-        child: Image.asset(
-            "assets/images/$theme/digit${this.widget._position}/${this.widget._position}-${this.digit}.png",
-            gaplessPlayback: true,
-            fit: BoxFit.cover));
+    return ClockFitImage("assets/images/$theme/digit${this.widget._position}/${this.widget._position}-${this.digit}.png");
   }
 
   DateFormat _getHourFormat() {

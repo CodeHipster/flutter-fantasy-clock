@@ -12,6 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
+import 'package:fantasy_clock/components/clock-fit-image.dart';
 import 'package:fantasy_clock/components/time/minute-notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -53,8 +54,7 @@ class _TimeState extends State<Time> {
     var stack = Stack(children: [
       digits[0],
       digits[1],
-      SizedBox.expand(child: Image.asset("assets/images/$theme/colon.png",gaplessPlayback: true,
-          fit: BoxFit.cover)),
+      ClockFitImage("assets/images/$theme/colon.png"),
       digits[2],
       digits[3],
     ]);

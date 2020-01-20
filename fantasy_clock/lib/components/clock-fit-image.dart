@@ -12,20 +12,19 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-import 'package:fantasy_clock/components/clock-fit-image.dart';
-import 'package:flutter/material.dart';
 
-class Background extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => _BackgroundState();
-}
+///Wrapping widget for showing an image fullscreen.
+import 'package:flutter/cupertino.dart';
 
-class _BackgroundState extends State<Background> {
+class ClockFitImage extends StatelessWidget {
+  final String _image;
+
+  ClockFitImage(this._image);
+
   @override
   Widget build(BuildContext context) {
-    final String theme =
-        Theme.of(context).brightness == Brightness.light ? "light" : "dark";
-
-    return ClockFitImage("assets/images/$theme/background/background.png");
+    return SizedBox.expand(
+        child:
+        Image.asset(this._image, gaplessPlayback: true, fit: BoxFit.cover));
   }
 }
