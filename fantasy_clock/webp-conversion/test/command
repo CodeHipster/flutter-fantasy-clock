@@ -1,1 +1,1 @@
-img2webp -o test.webp -loop 0 -lossless -d 200 T.png TE.png TES.png TEST.png
+img2webp -o test.webp -loop 1 -lossless -d 200 T.png TE.png TES.png TEST.png

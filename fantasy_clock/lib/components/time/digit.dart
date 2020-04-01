@@ -73,10 +73,11 @@ class _DigitState extends State<Digit> {
 
   @override
   Widget build(BuildContext context) {
+    print("digit, pos: ${this.widget._position}, value: ${this.digit}");
     final String theme =
         Theme.of(context).brightness == Brightness.light ? "light" : "dark";
 
-    return ClockFitImage("assets/images/$theme/digit${this.widget._position}/${this.widget._position}-${this.digit}.png");
+    return ClockFitImage("assets/images/$theme/digit${this.widget._position}/${this.widget._position}-${this.digit}.webp");
   }
 
   DateFormat _getHourFormat() {

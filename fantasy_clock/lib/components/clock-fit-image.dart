@@ -25,6 +25,7 @@ class ClockFitImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox.expand(
         child:
-        Image.asset(this._image, gaplessPlayback: true, fit: BoxFit.cover));
+//        Image.asset(this._image, gaplessPlayback: true, fit: BoxFit.cover));
+        Image.asset(this._image, fit: BoxFit.cover));
   }
 }
