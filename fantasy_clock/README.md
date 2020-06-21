@@ -11,6 +11,7 @@ Try not to get lost when you are looking for the time.
 ### artwork
 - high resolution digits
 - colon between digits
+- animation from 1 to 0, for the 12hour format
 - Lights in scene
 - Animations in background
     - wind

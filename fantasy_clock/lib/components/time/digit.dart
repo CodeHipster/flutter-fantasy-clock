@@ -111,9 +111,9 @@ class _DigitState extends State<Digit> {
     if(digit > 0) return digit - 1;
     switch (this.widget._position) {
       case 1:
-        return (widget._settings.is24HourFormat) ? 2: 1;
+        return (widget._settings.is24HourFormat) ? 2: 2; //TODO: animation from 1 to 0, for the 12hour format
       case 2:
-        return (widget._settings.is24HourFormat) ? 3: 1;
+        return (widget._settings.is24HourFormat) ? 3: 9;
       case 3:
         return 5;
       case 4:
