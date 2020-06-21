@@ -5,12 +5,12 @@ Try not to get lost when you are looking for the time.
 ## Improvements
 
 ### code
-- make sure animations run only once.
-- run it on actual android device
 - make an apk to share
 - resized images for lower resolutions
 
 ### artwork
+- high resolution digits
+- colon between digits
 - Lights in scene
 - Animations in background
     - wind

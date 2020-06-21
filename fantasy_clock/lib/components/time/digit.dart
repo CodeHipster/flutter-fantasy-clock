@@ -38,6 +38,7 @@ class Digit extends StatefulWidget {
 
 class _DigitState extends State<Digit> {
   int digit;
+  int previousDigit;
   VoidCallback onMinuteChange;
   VoidCallback onSettingChanged;
   DateFormat hourFormat;
@@ -47,10 +48,14 @@ class _DigitState extends State<Digit> {
     super.initState();
     hourFormat = _getHourFormat();
     digit = _convert(widget._minuteNotifier.value, this.hourFormat);
+    previousDigit = _previous(digit);
     onMinuteChange = () {
       var value = _convert(widget._minuteNotifier.value, this.hourFormat);
       if(this.digit != value){
-        this.setState(() => this.digit = value);
+        this.setState(() {
+          this.digit = value;
+          this.previousDigit = _previous(digit);
+        });
       }
     };
     onSettingChanged = () {
@@ -59,6 +64,7 @@ class _DigitState extends State<Digit> {
       this.setState(() {
         this.hourFormat = hourFormat;
         this.digit = value;
+        this.previousDigit = _previous(digit);
       });
     };
     widget._minuteNotifier.addListener(onMinuteChange);
@@ -73,11 +79,12 @@ class _DigitState extends State<Digit> {
 
   @override
   Widget build(BuildContext context) {
+    print("previous digit, pos: ${this.widget._position}, value: ${this.previousDigit}");
     print("digit, pos: ${this.widget._position}, value: ${this.digit}");
     final String theme =
         Theme.of(context).brightness == Brightness.light ? "light" : "dark";
 
-    return ClockFitImage("assets/images/$theme/digit${this.widget._position}/${this.widget._position}-${this.digit}.webp");
+    return ClockFitImage("assets/images/$theme/digit${this.widget._position}/${this.widget._position}_${this.previousDigit}-${this.digit}.webp");
   }
 
   DateFormat _getHourFormat() {
@@ -95,6 +102,22 @@ class _DigitState extends State<Digit> {
         return dt.minute ~/ 10;
       case 4:
         return dt.minute % 10;
+      default:
+        throw Exception("There can only be 4 digits in our clock.");
+    }
+  }
+
+  int _previous(digit){
+    if(digit > 0) return digit - 1;
+    switch (this.widget._position) {
+      case 1:
+        return (widget._settings.is24HourFormat) ? 2: 1;
+      case 2:
+        return (widget._settings.is24HourFormat) ? 3: 1;
+      case 3:
+        return 5;
+      case 4:
+        return 9;
       default:
         throw Exception("There can only be 4 digits in our clock.");
     }
